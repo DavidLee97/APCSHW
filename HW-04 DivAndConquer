@@ -1,0 +1,43 @@
+  import java.io.*;
+  import java.util.*;
+  
+  public class DivAndConquer{
+      public ArrayList<String> merge(ArrayList<String> parrot, ArrayList<String> monkey){
+  	ArrayList<String> result = new ArrayList();
+  	int a = 0, b = 0;
+  	while (a < parrot.size() || b < monkey.size()){
+  	    if (parrot.get(a).compareTo (monkey.get(b)) > 0){
+  		result.add(monkey.get(b));
+  		b += 1;
+  	    }
+  	    else if (parrot.get(a).compareTo(monkey.get(b)) < 0){
+  		result.add(parrot.get(a));
+  		a += 1;
+  	    }
+  	    else if (a >= parrot.size()){
+  		result.add(monkey.get(b));
+  		b += 1;
+  	    }
+  	    else {
+  		result.add(parrot.get(a));
+  		a += 1;
+  	    }
+  	}
+  	return result;
+      }
+  
+      public ArrayList<String> msort (ArrayList<String> L){
+  	if (L.size() <= 1){
+  	    return L;
+  	}
+  	int half = L.size()/2;
+  
+  	ArrayList<String> parrot = L.subList(0, half);
+  	ArrayList<String> monkey = L.subList(half, L.size());
+  	parrot = msort(parrot);
+  	monkry = msort(monkey);
+  	ArrayList<String> result = merge(parrot,monkry);
+  	return result;
+      }
+  }
+   
